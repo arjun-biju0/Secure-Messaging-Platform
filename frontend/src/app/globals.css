@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+/*
+  Design tokens modeled on Signal Desktop / Signal Android's actual
+  palette: deep blue header/accent (#3A76F0 family), neutral grays for
+  the conversation list and chat background, and the signature
+  message-bubble colors (blue for outgoing, light gray for incoming).
+*/
+:root {
+  --signal-blue: #3a76f0;
+  --signal-blue-dark: #2c6bed;
+  --signal-blue-darker: #1d50b5;
+  --signal-blue-tint: #e7f0ff;
+
+  --signal-bg: #ffffff;
+  --signal-bg-secondary: #f6f6f6;
+  --signal-bg-tertiary: #efefef;
+  --signal-border: #e3e3e3;
+
+  --signal-text-primary: #1b1b1b;
+  --signal-text-secondary: #6f6f6f;
+  --signal-text-tertiary: #999999;
+
+  --signal-bubble-incoming: #f0f0f0;
+  --signal-bubble-outgoing: #3a76f0;
+
+  --signal-online: #4caf50;
+  --signal-danger: #d6516a;
+
+  --signal-header-bg: #2c2c2e;
+
+  --background: var(--signal-bg);
+  --foreground: var(--signal-text-primary);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-signal-blue: var(--signal-blue);
+  --color-signal-blue-dark: var(--signal-blue-dark);
+  --color-signal-blue-darker: var(--signal-blue-darker);
+  --color-signal-blue-tint: var(--signal-blue-tint);
+
+  --color-signal-bg: var(--signal-bg);
+  --color-signal-bg-secondary: var(--signal-bg-secondary);
+  --color-signal-bg-tertiary: var(--signal-bg-tertiary);
+  --color-signal-border: var(--signal-border);
+
+  --color-signal-text-primary: var(--signal-text-primary);
+  --color-signal-text-secondary: var(--signal-text-secondary);
+  --color-signal-text-tertiary: var(--signal-text-tertiary);
+
+  --color-signal-bubble-incoming: var(--signal-bubble-incoming);
+  --color-signal-bubble-outgoing: var(--signal-bubble-outgoing);
+
+  --color-signal-online: var(--signal-online);
+  --color-signal-danger: var(--signal-danger);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Slim, unobtrusive scrollbars reminiscent of Signal Desktop */
+.signal-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.signal-scroll::-webkit-scrollbar-thumb {
+  background: #d0d0d0;
+  border-radius: 999px;
+}
+.signal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@keyframes typing-bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-4px); opacity: 1; }
+}
+.typing-dot {
+  animation: typing-bounce 1.2s infinite ease-in-out;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.15s; }
+.typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(-12px) translateX(-50%); }
+  to { opacity: 1; transform: translateY(0) translateX(-50%); }
+}
+.toast-in {
+  animation: toast-in 0.22s ease-out;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.fade-in {
+  animation: fade-in 0.15s ease-out;
+}
+
+@keyframes message-pop {
+  from { opacity: 0; transform: scale(0.96) translateY(4px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.message-pop {
+  animation: message-pop 0.15s ease-out;
+}
